@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'iminib3d' target in the 'iminib3d' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

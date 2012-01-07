@@ -1,0 +1,231 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4A38AA514B8BFFC006E3D49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A38AA414B8BFFC006E3D49 /* Foundation.framework */; };
+		F4A38AAB14B8BFFC006E3D49 /* iminib3d.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A38AAA14B8BFFC006E3D49 /* iminib3d.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F4A38AA114B8BFFC006E3D49 /* libiminib3d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiminib3d.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4A38AA414B8BFFC006E3D49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F4A38AA814B8BFFC006E3D49 /* iminib3d-Prefix.pch */ = {isa = PBXFileReference; path = "iminib3d-Prefix.pch"; sourceTree = "<group>"; };
+		F4A38AA914B8BFFC006E3D49 /* iminib3d.h */ = {isa = PBXFileReference; path = iminib3d.h; sourceTree = "<group>"; };
+		F4A38AAA14B8BFFC006E3D49 /* iminib3d.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iminib3d.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4A38A9E14B8BFFC006E3D49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A38AA514B8BFFC006E3D49 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4A38A9614B8BFFB006E3D49 = {
+			isa = PBXGroup;
+			children = (
+				F4A38AA614B8BFFC006E3D49 /* iminib3d */,
+				F4A38AA314B8BFFC006E3D49 /* Frameworks */,
+				F4A38AA214B8BFFC006E3D49 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4A38AA214B8BFFC006E3D49 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4A38AA114B8BFFC006E3D49 /* libiminib3d.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4A38AA314B8BFFC006E3D49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4A38AA414B8BFFC006E3D49 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4A38AA614B8BFFC006E3D49 /* iminib3d */ = {
+			isa = PBXGroup;
+			children = (
+				F4A38AA914B8BFFC006E3D49 /* iminib3d.h */,
+				F4A38AAA14B8BFFC006E3D49 /* iminib3d.m */,
+				F4A38AA714B8BFFC006E3D49 /* Supporting Files */,
+			);
+			path = iminib3d;
+			sourceTree = "<group>";
+		};
+		F4A38AA714B8BFFC006E3D49 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F4A38AA814B8BFFC006E3D49 /* iminib3d-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F4A38A9F14B8BFFC006E3D49 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F4A38AA014B8BFFC006E3D49 /* iminib3d */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4A38AAE14B8BFFC006E3D49 /* Build configuration list for PBXNativeTarget "iminib3d" */;
+			buildPhases = (
+				F4A38A9D14B8BFFC006E3D49 /* Sources */,
+				F4A38A9E14B8BFFC006E3D49 /* Frameworks */,
+				F4A38A9F14B8BFFC006E3D49 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iminib3d;
+			productName = iminib3d;
+			productReference = F4A38AA114B8BFFC006E3D49 /* libiminib3d.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4A38A9814B8BFFB006E3D49 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = F4A38A9B14B8BFFB006E3D49 /* Build configuration list for PBXProject "iminib3d" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F4A38A9614B8BFFB006E3D49;
+			productRefGroup = F4A38AA214B8BFFC006E3D49 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4A38AA014B8BFFC006E3D49 /* iminib3d */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4A38A9D14B8BFFC006E3D49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4A38AAB14B8BFFC006E3D49 /* iminib3d.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F4A38AAC14B8BFFC006E3D49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F4A38AAD14B8BFFC006E3D49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4A38AAF14B8BFFC006E3D49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/iminib3d.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iminib3d/iminib3d-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F4A38AB014B8BFFC006E3D49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/iminib3d.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iminib3d/iminib3d-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4A38A9B14B8BFFB006E3D49 /* Build configuration list for PBXProject "iminib3d" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A38AAC14B8BFFC006E3D49 /* Debug */,
+				F4A38AAD14B8BFFC006E3D49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4A38AAE14B8BFFC006E3D49 /* Build configuration list for PBXNativeTarget "iminib3d" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4A38AAF14B8BFFC006E3D49 /* Debug */,
+				F4A38AB014B8BFFC006E3D49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4A38A9814B8BFFB006E3D49 /* Project object */;
+}

@@ -49,9 +49,10 @@
 // v0.5
 // ----
 
+// new project structure for Xcode 4
 // added retina dislay support
 // added new EntityBlend mode - no. 4, pre-multiplied alpha - use this for drawing sprites without black edges
-// added teapot example - perform sphere mapping via code
+// added teapot example - performs software sphere mapping - slow!
 // changed Global::Graphics - now defaults to screen size of device
 // fixed FreeEntity bug - freeing anim meshes directly would cause a crash
 // fixed FreeEntity bug - freeing lights would cause a crash
@@ -154,7 +155,6 @@
 #include "tilt.h"
 #include "Texture2D.h"
 #include "MachTimer.h"
-#include "UIDevice-hardware.h"
 
 #include <iostream>
 using namespace std;

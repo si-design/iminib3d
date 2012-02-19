@@ -11,6 +11,7 @@
 
 list<Entity*> Pick::ent_list;
 
+float Pick::EPSILON=0.0001;
 float Pick::picked_x;
 float Pick::picked_y;
 float Pick::picked_z;
@@ -24,6 +25,10 @@ int Pick::picked_triangle;
 
 Entity* Pick::CameraPick(Camera* cam,float vx,float vy){
 
+    // account for retina scale
+    vx *= Global::Scale();
+    vy *= Global::Scale();
+    
 	float px=0.0;
 	float py=0.0;
 	float pz=0.0;

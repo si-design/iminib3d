@@ -44,7 +44,7 @@ Mesh* LoadAnimB3DFile(string f_name,Entity* parent_ent_ext){
 	// dir stuff
 	
 	// get current dir - we'll change it back at end of func
-	/* //***todo***
+	/* ***todo***
 	Local cd$=CurrentDir$()
 	
 	// get directory of b3d file name, set current dir to match it so we can find textures
@@ -327,7 +327,7 @@ Mesh* LoadAnimB3DFile(string f_name,Entity* parent_ent_ext){
 				// load texture, providing texture we created above as parameter.
 				// if a texture exists with all the same values as above (blend etc), the existing texture will be returned.
 				// if not then the texture created above (supplied as param below) will be returned
-				new_tex=Texture::LoadTexture(te_file,te_flags);//,tex[tex_no]); //***todo***
+				new_tex=Texture::LoadTexture(te_file,te_flags);//,tex[tex_no]); ***todo***
 				*/
 
 				Texture* new_tex=Texture::LoadTexture(te_file,te_flags);
@@ -926,7 +926,7 @@ Mesh* LoadAnimB3D(string f_name,Entity* parent_ent_ext){
 	// dir stuff
 	
 	// get current dir - we'll change it back at end of func
-	/* //***todo***
+	/* ***todo***
 	Local cd$=CurrentDir$()
 	
 	// get directory of b3d file name, set current dir to match it so we can find textures
@@ -1209,10 +1209,10 @@ Mesh* LoadAnimB3D(string f_name,Entity* parent_ent_ext){
 				// load texture, providing texture we created above as parameter.
 				// if a texture exists with all the same values as above (blend etc), the existing texture will be returned.
 				// if not then the texture created above (supplied as param below) will be returned
-				new_tex=Texture::LoadTexture(te_file,te_flags);//,tex[tex_no]); //***todo***
+				new_tex=Texture::LoadTexture(te_file,te_flags);//,tex[tex_no]); ***todo***
 				*/
 
-				int tex_ms=Millisecs();
+				//int tex_ms=Millisecs();
 
 				Texture* new_tex=Texture::LoadTexture(te_file,te_flags);
 
@@ -1424,7 +1424,7 @@ Mesh* LoadAnimB3D(string f_name,Entity* parent_ent_ext){
 
 			new_tag=ReadTag(bank,offset);
 
-			int vert_ms=Millisecs();
+			//int vert_ms=Millisecs();
 
 			while((NewTag(new_tag)!=true) && (offset<bank->size)){
 		
@@ -1808,7 +1808,7 @@ void TrimVerts(Surface* surf){
 	int vmin=surf->vmin;
 	int vmax=surf->vmax;
 
-	//***todo***
+	***todo***
 	surf->vert_coords=surf->vert_coords[vmin*3..vmax*3+3]
 	surf->vert_col=surf->vert_col[vmin*4..vmax*4+4]
 	surf->vert_norm=surf->vert_norm[vmin*3..vmax*3+3]

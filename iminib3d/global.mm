@@ -74,9 +74,6 @@ int Global::iPad(){
 // returns screen scale 
 float Global::Scale(){
 
-	// if running on ipad, only return 1.0
-	if(ipad!=0) return 1.0;
-		
 	#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
 	// iphone >4.0 - returns 1.0 on non retina displays, 2.0 on retina displays
 	if([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){ // check for scaling
@@ -97,8 +94,8 @@ void Global::Graphics(int w,int h){
 			w=320*Scale(); // will be set to 640 for retina display
 			h=480*Scale(); // will be set to 960 for retina display
 		}else{
-			w=768;
-			h=1024;
+			w=768*Scale(); // will be set to 1536 for retina display
+			h=1024*Scale(); // will be set to 2048 for retina display
 		}
 	}
 

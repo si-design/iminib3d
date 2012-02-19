@@ -594,7 +594,7 @@ void Surface::UpdateVBO(){
 		glGenBuffers(6,&vbo_id[0]);
 	}
 
-	if(reset_vbo=-1) reset_vbo=1|2|4|8|16;
+	if(reset_vbo==-1) reset_vbo=1|2|4|8|16;
 
 	if(reset_vbo&1){
 		glBindBuffer(GL_ARRAY_BUFFER,vbo_id[0]);

@@ -234,6 +234,10 @@ void Camera::CameraProject(float x,float y,float z){
 	projected_y=vy+vheight-py;
 	projected_z=pz;
 
+    // account for retina scale
+    projected_x /= Global::Scale();
+    projected_y /= Global::Scale();
+    
 }
 
 float Camera::ProjectedX(){
@@ -441,7 +445,7 @@ void Camera::Update(){
 	glScissor(vx,vy,vwidth,vheight);
 	glClearColor(cls_r,cls_g,cls_b,1.0);
 	
-	int ms=Millisecs();
+	//int ms=Millisecs();
 	
 	// clear buffers
 	if(cls_color==true && cls_zbuffer==true)
@@ -461,9 +465,9 @@ void Camera::Update(){
 
 	//fog
 
-	static int fog=-1;
-	static float fog_near=-1.0;
-	static float fog_far=-1.0;
+	//static int fog=-1;
+	//static float fog_near=-1.0;
+	//static float fog_far=-1.0;
 	static float fogr=-1.0;
 	static float fogg=-1.0;
 	static float fogb=-1.0;

@@ -56,7 +56,7 @@ public:
 		
 		reset_bounds=true;
 		
-		min_x=0.0,min_y=0.0,min_z=0.0;max_x=0.0,max_y==0.0,max_z=0.0;
+		min_x=0.0,min_y=0.0,min_z=0.0;max_x=0.0,max_y=0.0,max_z=0.0;
 		
 	}
 	

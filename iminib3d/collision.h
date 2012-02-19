@@ -82,6 +82,8 @@ struct CollisionInfo{
 	float bz;
 };
 
+bool hitTest( const Line &line,float radius,const Transform &tf,MeshCollider* mesh_col,int method,Collision* curr_coll,CollisionInfo &ci  );
+
 // start of wrapper funcs
 
 Vector* C_CreateVecObject(float x,float y,float z);

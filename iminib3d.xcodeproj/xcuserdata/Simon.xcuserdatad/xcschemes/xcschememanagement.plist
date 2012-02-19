@@ -4,15 +4,85 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>birds.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>collisions.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>empty.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>fireworks.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>iminib3d.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>teapot.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>tilt.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>zombie.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>F4A38AA014B8BFFC006E3D49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4D2B4A314F14BAE00631A62</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4D2B4DE14F14D1700631A62</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4D2B50514F14D7200631A62</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4D2B52A14F14DBF00631A62</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4D2B54D14F14E2400631A62</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4D2B56C14F14E6E00631A62</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4D2B58D14F14EAE00631A62</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -26,8 +26,8 @@ int Pick::picked_triangle;
 Entity* Pick::CameraPick(Camera* cam,float vx,float vy){
 
     // account for retina scale
-    vx *= Global::Scale();
-    vy *= Global::Scale();
+    //vx *= Global::Scale();
+    //vy *= Global::Scale();
     
 	float px=0.0;
 	float py=0.0;

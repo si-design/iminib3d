@@ -235,8 +235,8 @@ void Camera::CameraProject(float x,float y,float z){
 	projected_z=pz;
 
     // account for retina scale
-    projected_x /= Global::Scale();
-    projected_y /= Global::Scale();
+    //projected_x /= Global::Scale();
+    //projected_y /= Global::Scale();
     
 }
 

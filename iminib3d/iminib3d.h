@@ -7,7 +7,7 @@
  *
  */
 
-// iMiniB3D v0.5
+// iMiniB3D v0.6
 // -------------
 
 // iMiniB3D Terms of Use
@@ -46,11 +46,17 @@
 // ~ TextureFilter has been renamed to AddTextureFilter in iMiniB3D
 // ~ CopyEntity fully copies a mesh, so there is no shared surface data like there is in Blitz3D. You now cannot use the Mesh commands to affect all copied entities that share the same surface data
 
+// v0.6
+// ----
+
+// added iPhone 5 display support
+// replaced CreateCube/Sphere/Cylinder/Cone functions with actual Blitz3D code - more efficient
+
 // v0.5
 // ----
 
 // new project structure for Xcode 4
-// added retina dislay support
+// added retina display support
 // added new EntityBlend mode - no. 4, pre-multiplied alpha - use this for drawing sprites without black edges
 // added teapot example - performs software sphere mapping - slow!
 // changed Global::Graphics - now defaults to screen size of device

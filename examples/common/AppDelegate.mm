@@ -43,9 +43,9 @@ Game* game;
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
     {
-        UIViewController* vc = [[[UIViewController alloc] init] autorelease];
-        vc.view = glView;
-        window.rootViewController = vc;
+        //UIViewController* vc = [[[UIViewController alloc] init] autorelease];
+        //vc.view = glView;
+        //window.rootViewController = vc;
     }
     
 	game=new Game;

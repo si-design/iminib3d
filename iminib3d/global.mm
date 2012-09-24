@@ -71,7 +71,23 @@ int Global::iPad(){
 
 }
 
-// returns screen scale 
+int Global::ScreenWidth()
+{
+  
+  CGSize result = [[UIScreen mainScreen] bounds].size;
+  return result.width;
+  
+}
+
+int Global::ScreenHeight()
+{
+  
+  CGSize result = [[UIScreen mainScreen] bounds].size;
+  return result.height;
+  
+}
+
+// returns screen scale
 float Global::Scale(){
 
 	#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
@@ -90,18 +106,21 @@ void Global::Graphics(int w,int h){
 
 	// no graphics size specified - set default
 	if(w==0 && h==0){
-		if(iPad()==0){
-			w=320*Scale(); // will be set to 640 for retina display
-			h=480*Scale(); // will be set to 960 for retina display
-		}else{
-			w=768*Scale(); // will be set to 1536 for retina display
-			h=1024*Scale(); // will be set to 2048 for retina display
-		}
+		//if(iPad()==0){
+		//	w=ScreenWidth()*Scale(); // will be set to 640 for retina display
+		//	h=ScreenHeight()*Scale(); // will be set to 960 for retina display
+		//}else{
+			w=ScreenWidth()*Scale(); // will be set to 1536 for retina display
+			h=ScreenHeight()*Scale(); // will be set to 2048 for retina display
+		//}
 	}
 
 	width=w;
 	height=h;
 
+  cout << "width: " << width << endl;
+  cout << "height: " << height << endl;
+  
 	glDepthFunc(GL_LEQUAL);
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT,GL_NICEST);
 		

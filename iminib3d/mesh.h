@@ -69,8 +69,8 @@ public:
 	static Mesh* LoadAnimMesh(string filename,Entity* parent_ent=NULL);
 	static Mesh* CreateQuad(Entity* parent_ent=NULL);
 	static Mesh* CreateCube(Entity* parent_ent=NULL);
-	static Mesh* CreateSphere(int segments=8,Entity* parent_ent=NULL);
-	static Mesh* CreateCylinder(int verticalsegments=8,int solid=true,Entity* parent_ent=NULL);
+  static Mesh* CreateSphere(int segments=8,Entity* parent_ent=NULL);
+	static Mesh* CreateCylinder(int segs=8,int solid=true,Entity* parent_ent=NULL);
 	static Mesh* CreateCone(int segments=8,int solid=true,Entity* parent_ent=NULL);
 	Mesh* CopyMesh(Entity* parent_ent=NULL);
 	void AddMesh(Mesh* mesh2);
@@ -102,6 +102,32 @@ public:
 	void Update() {};
 	void Render();
 	
+};
+
+// b3dVertex and b3dTriangle taken from Blitz3D source code. Used for new CreateSphere, which is also from Blitz3D source code.
+
+struct b3dVertex{
+  Vector coords;
+  Vector normal;
+  unsigned color;
+  float tex_coords[2][2];
+  
+  b3dVertex():color(~0){
+    
+    tex_coords[0][0]=0.0;
+    tex_coords[0][1]=0.0;
+    tex_coords[1][0]=0.0;
+    tex_coords[1][1]=0.0;
+  }
+  
+  bool operator<( const b3dVertex &t )const{
+    return memcmp( this,&t,sizeof(*this) )==-1;
+  }
+  
+};
+
+struct b3dTriangle{
+  unsigned short verts[3];
 };
 
 #endif

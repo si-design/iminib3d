@@ -355,6 +355,45 @@ Mesh* Mesh::CreateQuad(Entity* parent_ent){
 	
 }
 
+/*
+Mesh* Mesh::CreateCube(Entity* parent_ent){
+
+  Mesh* m=CreateMesh(parent_ent);
+	Surface* s=m->CreateSurface();
+  
+	static Vector norms[]={
+		Vector(0,0,-1),Vector(1,0,0),Vector(0,0,1),
+		Vector(-1,0,0),Vector(0,1,0),Vector(0,-1,0)
+	};
+	static Vector tex_coords[]={
+		Vector(0,0,1),Vector(1,0,1),Vector(1,1,1),Vector(0,1,1)
+	};
+	static int verts[]={
+		2,3,1,0,3,7,5,1,7,6,4,5,6,2,0,4,6,7,3,2,0,1,5,4
+	};
+	static Box box( Vector(-1,-1,-1),Vector(1,1,1) );
+  
+	b3dVertex v;
+	b3dTriangle t;
+	for( int k=0;k<24;k+=4 ){
+		const Vector &normal=norms[k/4];
+		for( int j=0;j<4;++j ){
+			v.coords=box.corner( verts[k+j] );
+			v.normal=normal;
+			v.tex_coords[0][0]=v.tex_coords[1][0]=tex_coords[j].x;
+			v.tex_coords[0][1]=v.tex_coords[1][1]=tex_coords[j].y;
+			s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+		}
+		t.verts[0]=k;t.verts[1]=k+1;t.verts[2]=k+2;s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+		t.verts[1]=k+2;t.verts[2]=k+3;s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+	}
+  
+  m->UpdateNormals();
+  
+	return m;
+}
+*/
+
 Mesh* Mesh::CreateCube(Entity* parent_ent){
 	
 	Mesh* mesh=CreateMesh(parent_ent);
@@ -498,6 +537,73 @@ Mesh* Mesh::CreateCube(Entity* parent_ent){
 	
 }
 
+//MeshModel *MeshUtil::createSphere( const Brush &b,int segs ){
+Mesh* Mesh::CreateSphere(int segments,Entity* parent_ent){
+
+  if(segments<3 || segments>100) return NULL;
+  
+	int h_segs=segments*2,v_segs=segments;
+
+  Mesh* m=CreateMesh(parent_ent);
+	Surface* s=m->CreateSurface();
+    
+	b3dVertex v;
+	b3dTriangle t;
+    
+	v.coords=v.normal=Vector(0,1,0);
+	int k;
+	for( k=0;k<h_segs;++k ){
+		v.tex_coords[0][0]=v.tex_coords[1][0]=(k+.5f)/h_segs;
+		v.tex_coords[0][1]=v.tex_coords[1][1]=0;
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+	}
+	for( k=1;k<v_segs;++k ){
+		float pitch=k*PI/v_segs-HALFPI;
+		for( int j=0;j<=h_segs;++j ){
+			float yaw=(j%h_segs)*TWOPI/h_segs;
+			v.coords=v.normal=rotationMMatrix( pitch,yaw,0 ).k;
+			v.tex_coords[0][0]=v.tex_coords[1][0]=float(j)/float(h_segs);
+			v.tex_coords[0][1]=v.tex_coords[1][1]=float(k)/float(v_segs);
+			s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+		}
+	}
+	v.coords=v.normal=Vector(0,-1,0);
+	for( k=0;k<h_segs;++k ){
+		v.tex_coords[0][0]=v.tex_coords[1][0]=(k+.5f)/h_segs;
+		v.tex_coords[0][1]=v.tex_coords[1][1]=1;
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+	}
+	for( k=0;k<h_segs;++k ){
+		t.verts[0]=k;
+		t.verts[1]=t.verts[0]+h_segs+1;
+		t.verts[2]=t.verts[1]-1;
+		s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+	}
+	for( k=1;k<v_segs-1;++k ){
+		for( int j=0;j<h_segs;++j ){
+			t.verts[0]=k*(h_segs+1)+j-1;
+			t.verts[1]=t.verts[0]+1;
+			t.verts[2]=t.verts[1]+h_segs+1;
+			s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+			t.verts[1]=t.verts[2];
+			t.verts[2]=t.verts[1]-1;
+			s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+		}
+	}
+	for( k=0;k<h_segs;++k ){
+		t.verts[0]=(h_segs+1)*(v_segs-1)+k-1;
+		t.verts[1]=t.verts[0]+1;
+		t.verts[2]=t.verts[1]+h_segs;
+		s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+	}
+    
+  m->UpdateNormals();
+	return m;
+}
+
+// old CreateSphere - creates roughly x3-4 more vertices than above CreateSphere
+
+/*
 Mesh* Mesh::CreateSphere(int segments,Entity* parent_ent){
 
 	if(segments<3 || segments>100) return NULL;
@@ -627,7 +733,73 @@ Mesh* Mesh::CreateSphere(int segments,Entity* parent_ent){
 	return thissphere; 
 
 }
+*/
 
+Mesh* Mesh::CreateCylinder(int segs,int solid,Entity* parent_ent){
+  
+  if(segs<3 || segs>100) return NULL;
+  
+	Mesh *m=CreateMesh(parent_ent);
+  Surface* s=m->CreateSurface();
+  
+	b3dVertex v;
+	b3dTriangle t;
+
+	int k;
+	for( k=0;k<=segs;++k ){
+		float yaw=(k%segs)*TWOPI/segs;
+		v.coords=rotationMMatrix( 0,yaw,0 ).k;
+		v.coords.y=1;
+		v.normal=Vector(v.coords.x,0,v.coords.z);
+		v.tex_coords[0][0]=v.tex_coords[1][0]=float(k)/segs;
+		v.tex_coords[0][1]=v.tex_coords[1][1]=0;
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+		v.coords.y=-1;
+		v.tex_coords[0][0]=v.tex_coords[1][0]=float(k)/segs;
+		v.tex_coords[0][1]=v.tex_coords[1][1]=1;
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+	}
+	for( k=0;k<segs;++k ){
+		t.verts[0]=k*2;
+		t.verts[1]=t.verts[0]+2;
+		t.verts[2]=t.verts[1]+1;
+		s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+		t.verts[1]=t.verts[2];
+		t.verts[2]=t.verts[1]-2;
+		s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+	}
+  
+	if( !solid ) return m;
+  
+	s=m->CreateSurface();
+  
+	for( k=0;k<segs;++k ){
+		float yaw=k*TWOPI/segs;
+		v.coords=rotationMMatrix( 0,yaw,0 ).k;
+		v.coords.y=1;v.normal=Vector(0,1,0);
+		v.tex_coords[0][0]=v.tex_coords[1][0]=v.coords.x*.5f+.5f;
+		v.tex_coords[0][1]=v.tex_coords[1][1]=v.coords.z*.5f+.5f;
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+		v.coords.y=-1;v.normal=Vector( 0,-1,0 );
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+	}
+	for( k=2;k<segs;++k ){
+		t.verts[0]=0;
+		t.verts[1]=k*2;
+		t.verts[2]=(k-1)*2;
+		s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+		t.verts[0]=1;
+		t.verts[1]=(k-1)*2+1;
+		t.verts[2]=k*2+1;
+		s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+	}
+  
+	m->UpdateNormals();
+ 
+  return m;
+}
+ 
+/*
 Mesh* Mesh::CreateCylinder(int verticalsegments,int solid,Entity* parent_ent){
 
 	int ringsegments=0; // default?
@@ -776,7 +948,62 @@ Mesh* Mesh::CreateCylinder(int verticalsegments,int solid,Entity* parent_ent){
 	return thiscylinder;
 	
 }
+*/
 
+Mesh* Mesh::CreateCone(int segs,int solid,Entity* parent_ent){
+  
+	if(segs<3 || segs>100) return NULL;
+	
+	Mesh* m=Mesh::CreateMesh(parent_ent);
+	Surface* s=m->CreateSurface();
+ 
+	b3dVertex v;
+	b3dTriangle t;
+  
+	int k;
+	v.coords=v.normal=Vector(0,1,0);
+	for( k=0;k<segs;++k ){
+		v.tex_coords[0][0]=v.tex_coords[1][0]=(k+.5f)/segs;
+		v.tex_coords[0][1]=v.tex_coords[1][1]=0;
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+	}
+	for( k=0;k<=segs;++k ){
+		float yaw=(k%segs)*TWOPI/segs;
+		v.coords=yawMMatrix( yaw ).k;v.coords.y=-1;
+		v.normal=Vector( v.coords.x,0,v.coords.z );
+		v.tex_coords[0][0]=v.tex_coords[1][0]=float(k)/segs;
+		v.tex_coords[0][1]=v.tex_coords[1][1]=1;
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+	}
+	for( k=0;k<segs;++k ){
+		t.verts[0]=k;
+		t.verts[1]=k+segs+1;
+		t.verts[2]=k+segs;
+		s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+	}
+	if( !solid ) return m;
+	s=m->CreateSurface();
+	for( k=0;k<segs;++k ){
+		float yaw=k*TWOPI/segs;
+		v.coords=yawMMatrix( yaw ).k;v.coords.y=-1;
+		v.normal=Vector( v.coords.x,0,v.coords.z );
+		v.tex_coords[0][0]=v.tex_coords[1][0]=v.coords.x*.5f+.5f;
+		v.tex_coords[0][1]=v.tex_coords[1][1]=v.coords.z*.5f+.5f;
+		s->AddVertex( v.coords.x, v.coords.y, v.coords.z, v.tex_coords[0][0], v.tex_coords[0][1], 0.0 );
+	}
+	t.verts[0]=0;
+	for( k=2;k<segs;++k ){
+		t.verts[1]=k-1;
+		t.verts[2]=k;
+		s->AddTriangle( t.verts[0], t.verts[1], t.verts[2] );
+	}
+  
+  m->UpdateNormals();
+  
+	return m;
+}
+ 
+/*
 Mesh* Mesh::CreateCone(int segments,int solid,Entity* parent_ent){
 
 	int top=0,br=0,bl=0; // side of cone
@@ -857,6 +1084,7 @@ Mesh* Mesh::CreateCone(int segments,int solid,Entity* parent_ent){
 	return thiscone;
 	
 }
+*/
 
 Mesh* Mesh::CopyMesh(Entity* parent_ent){
 

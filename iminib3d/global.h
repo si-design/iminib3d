@@ -32,6 +32,8 @@ public:
 	static Pivot* root_ent;
 	
 	static int iPad();
+  static int ScreenWidth();
+  static int ScreenHeight();
 	static float Scale();
 	
 	static void Graphics(int w=0,int h=0);

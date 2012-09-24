@@ -1,12 +1,15 @@
-iMiniB3D v0.5
+iMiniB3D v0.6
 -------------
 
-By Simon Harrison (so@si-design.co.uk)
+By Simon Harrison
+Email: si@si-design.co.uk
+Twitter: @si_design
 
 iMiniB3D Terms of Use
 ---------------------
 
 You are free to use iMiniB3D as you wish.
+If you do anything cool with it please let me know, and a credit in your published app/game would be very much appreciated!
 
 iMiniB3D Info
 ------------- 
@@ -38,6 +41,12 @@ MiniB3D -> iMiniB3D Differences
 - Anim textures not supported in iMiniB3D
 ~ TextureFilter has been renamed to AddTextureFilter in iMiniB3D
 ~ CopyEntity fully copies a mesh, so there is no shared surface data like there is in Blitz3D. You now cannot use the Mesh commands to affect all copied entities that share the same surface data
+
+v0.6
+----
+
+added iPhone 5 display support
+replaced CreateCube/Sphere/Cylinder/Cone functions with actual Blitz3D code - more efficient
 
 v0.5
 ----

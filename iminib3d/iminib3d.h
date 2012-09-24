@@ -10,10 +10,15 @@
 // iMiniB3D v0.6
 // -------------
 
+// By Simon Harrison
+// Email: si@si-design.co.uk
+// Twitter: @si_design
+
 // iMiniB3D Terms of Use
 // ---------------------
 
 // You are free to use iMiniB3D as you wish.
+// If you do anything cool with it please let me know, and a credit in your published app/game would be very much appreciated!
 
 // iMiniB3D Info
 // ------------- 

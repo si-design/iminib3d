@@ -304,6 +304,7 @@
 		F4A38AF414B8C0A0006E3D49 /* touch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = touch.mm; sourceTree = "<group>"; };
 		F4A38AF514B8C0A0006E3D49 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree.h; sourceTree = "<group>"; };
 		F4A38AF614B8C0A0006E3D49 /* tree.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = tree.mm; sourceTree = "<group>"; };
+		F4A5FB75161114D50055356A /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = SOURCE_ROOT; };
 		F4D2B4A414F14BAE00631A62 /* birds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = birds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D2B4A614F14BAE00631A62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F4D2B4A914F14BAE00631A62 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -614,6 +615,7 @@
 		F4A38AA714B8BFFC006E3D49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F4A5FB75161114D50055356A /* readme.txt */,
 				F4A38AA814B8BFFC006E3D49 /* iminib3d-Prefix.pch */,
 			);
 			name = "Supporting Files";

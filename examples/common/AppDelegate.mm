@@ -28,8 +28,6 @@ Game* game;
 
 	[window makeKeyAndVisible];
 
-	[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
-
 	glView.animationInterval = 1.0 / 60.0;
 	[glView startAnimation];
 

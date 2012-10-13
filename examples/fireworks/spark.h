@@ -29,8 +29,8 @@ public:
 	
 	void Update(){
 	
-		sprite->MoveEntity(0.0,0.0,0.5);
-		sprite->TranslateEntity(0,0,-0.5,0.0);
+		sprite->MoveEntity(0.0,0.0,0.2);
+		sprite->TranslateEntity(0,0,-0.2,0.0);
 		
 		alpha=alpha-.01;
 		sprite->EntityAlpha(alpha);

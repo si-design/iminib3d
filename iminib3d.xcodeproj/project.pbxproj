@@ -228,6 +228,13 @@
 		F4D2B61614F1513700631A62 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D2B5F414F150C200631A62 /* CoreFoundation.framework */; };
 		F4D2B61714F1513700631A62 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D2B5F514F150C200631A62 /* OpenGLES.framework */; };
 		F4D2B61814F1513700631A62 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D2B5F614F150C200631A62 /* QuartzCore.framework */; };
+		F4D33E991629CDBD00AE4788 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */; };
+		F4D33EA51629CFBD00AE4788 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */; };
+		F4D33EA71629D01F00AE4788 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */; };
+		F4D33EA81629D06B00AE4788 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */; };
+		F4D33EA91629D09000AE4788 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */; };
+		F4D33EAA1629D09B00AE4788 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */; };
+		F4D33EAB1629D0E100AE4788 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -376,6 +383,7 @@
 		F4D2B5F414F150C200631A62 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		F4D2B5F514F150C200631A62 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		F4D2B5F614F150C200631A62 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -746,6 +754,7 @@
 				F4D2B5B014F14F0100631A62 /* main.m */,
 				F4D2B5B114F14F0100631A62 /* MainWindow-iPad.xib */,
 				F4D2B5B214F14F0100631A62 /* MainWindow.xib */,
+				F4D33E981629CDBD00AE4788 /* Default-568h@2x.png */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -990,6 +999,7 @@
 				F4D2B5D614F14F0100631A62 /* Icon@2x.png in Resources */,
 				F4D2B5E414F14F0100631A62 /* MainWindow-iPad.xib in Resources */,
 				F4D2B5EB14F14F0100631A62 /* MainWindow.xib in Resources */,
+				F4D33EAB1629D0E100AE4788 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,6 +1018,7 @@
 				F4D2B5D714F14F0100631A62 /* Icon@2x.png in Resources */,
 				F4D2B5E514F14F0100631A62 /* MainWindow-iPad.xib in Resources */,
 				F4D2B5EC14F14F0100631A62 /* MainWindow.xib in Resources */,
+				F4D33EA71629D01F00AE4788 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,6 +1033,7 @@
 				F4D2B5D814F14F0100631A62 /* Icon@2x.png in Resources */,
 				F4D2B5E614F14F0100631A62 /* MainWindow-iPad.xib in Resources */,
 				F4D2B5ED14F14F0100631A62 /* MainWindow.xib in Resources */,
+				F4D33E991629CDBD00AE4788 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1035,6 +1047,7 @@
 				F4D2B5D914F14F0100631A62 /* Icon@2x.png in Resources */,
 				F4D2B5E714F14F0100631A62 /* MainWindow-iPad.xib in Resources */,
 				F4D2B5EE14F14F0100631A62 /* MainWindow.xib in Resources */,
+				F4D33EA51629CFBD00AE4788 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,6 +1062,7 @@
 				F4D2B5DA14F14F0100631A62 /* Icon@2x.png in Resources */,
 				F4D2B5E814F14F0100631A62 /* MainWindow-iPad.xib in Resources */,
 				F4D2B5EF14F14F0100631A62 /* MainWindow.xib in Resources */,
+				F4D33EA91629D09000AE4788 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,6 +1078,7 @@
 				F4D2B5DB14F14F0100631A62 /* Icon@2x.png in Resources */,
 				F4D2B5E914F14F0100631A62 /* MainWindow-iPad.xib in Resources */,
 				F4D2B5F014F14F0100631A62 /* MainWindow.xib in Resources */,
+				F4D33EAA1629D09B00AE4788 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1092,7 @@
 				F4D2B5DC14F14F0100631A62 /* Icon@2x.png in Resources */,
 				F4D2B5EA14F14F0100631A62 /* MainWindow-iPad.xib in Resources */,
 				F4D2B5F114F14F0100631A62 /* MainWindow.xib in Resources */,
+				F4D33EA81629D06B00AE4788 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

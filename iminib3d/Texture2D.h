@@ -80,6 +80,25 @@ The created Texture2D object will always have power-of-two dimensions.
 Depending on how you create the Texture2D object, the actual image area of the texture might be smaller than the texture dimensions i.e. "contentSize" != (pixelsWide, pixelsHigh) and (maxS, maxT) != (1.0, 1.0).
 Be aware that the content of the generated textures will be upside-down!
 */
+
+
+@interface TextureDataBundle : NSObject{ // object required for threaded loading
+	const void* data;
+	Texture2DPixelFormat pixelFormat;
+	NSUInteger width;
+	NSUInteger height;
+	CGSize size;
+}
+@property (nonatomic, readwrite) const void* data;
+@property (nonatomic, readwrite) Texture2DPixelFormat pixelFormat;
+@property (nonatomic, readwrite) NSUInteger width;
+@property (nonatomic, readwrite) NSUInteger height;
+@property (nonatomic, readwrite) CGSize size;
+
+@end
+
+
+
 @interface Texture2D : NSObject
 {
 @private
@@ -92,6 +111,8 @@ Be aware that the content of the generated textures will be upside-down!
 								_maxT;
 }
 - (id) initWithData:(const void*)data pixelFormat:(Texture2DPixelFormat)pixelFormat pixelsWide:(NSUInteger)width pixelsHigh:(NSUInteger)height contentSize:(CGSize)size;
+
+- (id) initWithTextureDataBundle:(TextureDataBundle*)dataBundle; // addition for threaded texture loading
 
 @property(readonly) Texture2DPixelFormat pixelFormat;
 @property(readonly) NSUInteger pixelsWide;

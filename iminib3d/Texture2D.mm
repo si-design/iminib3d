@@ -67,9 +67,18 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 //CONSTANTS:
 
-#define kMaxTextureSize	 1024
+//#define kMaxTextureSize 1024 // UIRequiredDeviceCapabilities opengles-1 // Everything
+//#define kMaxTextureSize 2048 // UIRequiredDeviceCapabilities opengles-2 // 3Gs and higher
+GLint maxTextureSize = 1024;
 
 //CLASS IMPLEMENTATIONS:
+
+@implementation TextureDataBundle
+
+@synthesize data, pixelFormat, width, height, size;
+
+@end
+
 
 @implementation Texture2D
 
@@ -111,6 +120,10 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	return self;
 }
 
+- (id) initWithTextureDataBundle:(TextureDataBundle*)dataBundle {
+	return [self initWithData:dataBundle.data pixelFormat:dataBundle.pixelFormat pixelsWide:dataBundle.width pixelsHigh:dataBundle.height contentSize:dataBundle.size];
+}
+
 - (void) dealloc
 {
 	if(_name)
@@ -148,15 +161,21 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	UIImageOrientation		orientation;
 	BOOL					sizeToFit = NO;
 	
+	self = [self init];
+	
+	if(uiImage == NULL) {
+		[self release];
+		return nil;
+	}
 	
 	image = [uiImage CGImage];
-	orientation = [uiImage imageOrientation]; 
 	
 	if(image == NULL) {
 		[self release];
-		NSLog(@"Image is Null");
 		return nil;
 	}
+
+	orientation = [uiImage imageOrientation]; 
 	
 
 	info = CGImageGetAlphaInfo(image);
@@ -174,7 +193,6 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	transform = CGAffineTransformIdentity;
 
 	width = imageSize.width;
-	
 	if((width != 1) && (width & (width - 1))) {
 		i = 1;
 		while((sizeToFit ? 2 * i : i) < width)
@@ -188,7 +206,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 			i *= 2;
 		height = i;
 	}
-	while((width > kMaxTextureSize) || (height > kMaxTextureSize)) {
+	
+	while((width > maxTextureSize) || (height > maxTextureSize)) {
 		width /= 2;
 		height /= 2;
 		transform = CGAffineTransformScale(transform, 0.5, 0.5);
@@ -196,6 +215,35 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 		imageSize.height *= 0.5;
 	}
 	
+	bool drawRotatedDimensions = NO;
+	switch (orientation) {
+		case UIImageOrientationUp:
+			break;
+		case UIImageOrientationLeft:
+			transform = CGAffineTransformTranslate(transform, CGImageGetWidth(image), 0);
+			transform = CGAffineTransformRotate(transform, (M_PI / 2.0));
+			drawRotatedDimensions = YES;
+			break;
+		case UIImageOrientationRight:
+			transform = CGAffineTransformTranslate(transform, 0, CGImageGetHeight(image));
+			transform = CGAffineTransformRotate(transform, -(M_PI / 2.0));
+			drawRotatedDimensions = YES;
+			break;
+		case UIImageOrientationDown:
+			transform = CGAffineTransformTranslate(transform, CGImageGetWidth(image), CGImageGetHeight(image));
+			transform = CGAffineTransformRotate(transform, -M_PI);
+			break;
+		default:
+			NSLog(@"Unsuported Texture Image Orientation %i", orientation);
+			NSLog(@"Dims %ix%i", width, height);
+			break;
+	}
+	
+	if (!(height*width)) {
+		[self release];
+		return nil;
+	}
+
 	switch(pixelFormat) {		
 		case kTexture2DPixelFormat_RGBA8888:
 			colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -220,11 +268,17 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
  
 
 	CGContextClearRect(context, CGRectMake(0, 0, width, height));
+	//CGContextClearRect(context, CGRectMake(0, 0, imageSize.width, imageSize.height));
 	CGContextTranslateCTM(context, 0, height - imageSize.height);
 	
-	if(!CGAffineTransformIsIdentity(transform))
-		CGContextConcatCTM(context, transform);
-	CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), CGImageGetHeight(image)), image);
+	if(!CGAffineTransformIsIdentity(transform)) CGContextConcatCTM(context, transform);
+	
+	//CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), CGImageGetHeight(image)), image);
+	if (drawRotatedDimensions)
+		CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetHeight(image), CGImageGetWidth(image)), image);
+	else
+		CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), CGImageGetHeight(image)), image);
+	
 	//Convert "RRRRRRRRRGGGGGGGGBBBBBBBBAAAAAAAA" to "RRRRRGGGGGGBBBBB"
 	if(pixelFormat == kTexture2DPixelFormat_RGB565) {
 		tempData = malloc(height * width * 2);
@@ -236,7 +290,16 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 		data = tempData;
 		
 	}
-	self = [self initWithData:data pixelFormat:pixelFormat pixelsWide:width pixelsHigh:height contentSize:imageSize];
+	//self = [self initWithData:data pixelFormat:pixelFormat pixelsWide:width pixelsHigh:height contentSize:imageSize];
+	
+	TextureDataBundle *dataBundle = [[TextureDataBundle alloc] init];
+	dataBundle.data = data;
+	dataBundle.pixelFormat = pixelFormat;
+	dataBundle.width = width;
+	dataBundle.height = height;
+	dataBundle.size = imageSize;
+	[self performSelectorOnMainThread:@selector(initWithTextureDataBundle:) withObject:dataBundle waitUntilDone:YES]; // the actual texture loading has to occur on the main thread so we force it there. If it's already the main thread then this just acts as perform selector would.
+	[dataBundle release];
 	
 	CGContextRelease(context);
 	free(data);

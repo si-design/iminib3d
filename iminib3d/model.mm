@@ -913,10 +913,20 @@ Mesh* LoadAnimB3D(string f_name,Entity* parent_ent_ext){
 
 	int ms=Millisecs();
 
-	int offset=0;
+  // check file
+  
+  File* file;
 	
+	file=File::ReadResourceFile(f_name);
+	
+	if(file==NULL) return Mesh::CreateCube(parent_ent_ext); //RuntimeError("Could Not Find File");
+  
+  file->CloseFile();
+  
 	// Start file reading
 	
+  int offset=0;
+  
 	Bank* bank;
 	
 	bank=Bank::LoadBank(f_name);

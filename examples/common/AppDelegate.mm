@@ -36,15 +36,15 @@ Game* game;
 		
 	theAccelerometer.delegate = self;
 	
-    // set root view controller - 4.0 and above only
-    NSString *reqSysVer = @"4.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
-    {
-        //UIViewController* vc = [[[UIViewController alloc] init] autorelease];
-        //vc.view = glView;
-        //window.rootViewController = vc;
-    }
+  // set root view controller - 4.0 and above only
+  NSString *reqSysVer = @"4.0";
+  NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+  if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+  {
+      //UIViewController* vc = [[[UIViewController alloc] init] autorelease];
+      //vc.view = glView;
+      //window.rootViewController = vc;
+  }
     
 	game=new Game;
 	game->Init();

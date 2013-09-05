@@ -949,7 +949,7 @@
 		F4A38A9814B8BFFB006E3D49 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = F4A38A9B14B8BFFB006E3D49 /* Build configuration list for PBXProject "iminib3d" */;
 			compatibilityVersion = "Xcode 3.2";

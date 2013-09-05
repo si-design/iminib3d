@@ -58,12 +58,12 @@ extern Game* game;
 
 	if ((self = [super initWithCoder:coder])) {
 	
-        #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
-        if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [self respondsToSelector:@selector(setContentScaleFactor:)]) {
-            self.contentScaleFactor = [[UIScreen mainScreen] scale]; // activate scaling
-        }
-        #endif
-        
+    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
+    if([[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [self respondsToSelector:@selector(setContentScaleFactor:)]) {
+        self.contentScaleFactor = [[UIScreen mainScreen] scale]; // activate scaling
+    }
+    #endif
+    
 		// Set up the ability to track multiple touches.
 		[self setMultipleTouchEnabled:YES];
 	
@@ -72,7 +72,7 @@ extern Game* game;
 		
 		eaglLayer.opaque = YES;
 		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-		   [NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+    [NSNumber numberWithBool:NO], kEAGLDrawablePropertyRetainedBacking, kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
 		
 		context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
 		
@@ -106,25 +106,25 @@ extern Game* game;
 
 	Touch::ClearTouches();
 
-    NSSet *touches = [event allTouches];
-    for (UITouch *myTouch in touches)
-    {
+  NSSet *touches = [event allTouches];
+  for (UITouch *myTouch in touches)
+  {
 	
 		int touch_type=0;
 	
-        if(myTouch.phase == UITouchPhaseBegan){
+    if(myTouch.phase == UITouchPhaseBegan){
 			touch_type=1;
-        }
-        if(myTouch.phase == UITouchPhaseMoved){
+    }
+    if(myTouch.phase == UITouchPhaseMoved){
 			touch_type=2;
-        }
-        if(myTouch.phase == UITouchPhaseStationary){
+    }
+    if(myTouch.phase == UITouchPhaseStationary){
 			touch_type=3;
-        }
-        if(myTouch.phase == UITouchPhaseEnded) {
+    }
+    if(myTouch.phase == UITouchPhaseEnded) {
 			touch_type=4;
 		}
-        if(myTouch.phase == UITouchPhaseCancelled) {
+    if(myTouch.phase == UITouchPhaseCancelled) {
 			touch_type=5;
 		}
 		
@@ -142,7 +142,7 @@ extern Game* game;
 		
 		}
 
-    }
+  }
 
 }
 
@@ -152,43 +152,43 @@ extern Game* game;
 
 	Touch::ClearTouches();
 
-    NSSet *touches = [event allTouches];
-    for (UITouch *myTouch in touches)
-    {
-	
-		int touch_type=0;
-	
-        if(myTouch.phase == UITouchPhaseBegan){
-			touch_type=1;
-        }
-        if(myTouch.phase == UITouchPhaseMoved){
-			touch_type=2;
-        }
-        if(myTouch.phase == UITouchPhaseStationary){
-			touch_type=3;
-        }
-        if(myTouch.phase == UITouchPhaseEnded) {
-			touch_type=4;
-		}
-        if(myTouch.phase == UITouchPhaseCancelled) {
-			touch_type=5;
-		}
-		
-		if(touch_type){
-		
-			CGRect bounds = [self bounds];
+  NSSet *touches = [event allTouches];
+  for (UITouch *myTouch in touches)
+  {
 
-			location = [myTouch locationInView:self];
-			location.y = bounds.size.height - location.y;
+    int touch_type=0;
 
-			previousLocation = [myTouch previousLocationInView:self];
-			previousLocation.y = bounds.size.height - previousLocation.y;
-			
-			new Touch(location.x,location.y,previousLocation.x,previousLocation.y,touch_type);
-		
-		}
-
+    if(myTouch.phase == UITouchPhaseBegan){
+      touch_type=1;
     }
+    if(myTouch.phase == UITouchPhaseMoved){
+      touch_type=2;
+    }
+    if(myTouch.phase == UITouchPhaseStationary){
+      touch_type=3;
+    }
+    if(myTouch.phase == UITouchPhaseEnded) {
+      touch_type=4;
+    }
+    if(myTouch.phase == UITouchPhaseCancelled) {
+      touch_type=5;
+    }
+  
+    if(touch_type){
+  
+      CGRect bounds = [self bounds];
+
+      location = [myTouch locationInView:self];
+      location.y = bounds.size.height - location.y;
+
+      previousLocation = [myTouch previousLocationInView:self];
+      previousLocation.y = bounds.size.height - previousLocation.y;
+    
+      new Touch(location.x,location.y,previousLocation.x,previousLocation.y,touch_type);
+  
+    }
+
+  }
 
 }
 
@@ -198,25 +198,25 @@ extern Game* game;
 
 	Touch::ClearTouches();
 
-    NSSet *touches = [event allTouches];
-    for (UITouch *myTouch in touches)
-    {
+  NSSet *touches = [event allTouches];
+  for (UITouch *myTouch in touches)
+  {
 	
 		int touch_type=0;
 	
-        if(myTouch.phase == UITouchPhaseBegan){
+    if(myTouch.phase == UITouchPhaseBegan){
 			touch_type=1;
-        }
-        if(myTouch.phase == UITouchPhaseMoved){
+    }
+    if(myTouch.phase == UITouchPhaseMoved){
 			touch_type=2;
-        }
-        if(myTouch.phase == UITouchPhaseStationary){
+    }
+    if(myTouch.phase == UITouchPhaseStationary){
 			touch_type=3;
-        }
-        if(myTouch.phase == UITouchPhaseEnded) {
+    }
+    if(myTouch.phase == UITouchPhaseEnded) {
 			touch_type=4;
 		}
-        if(myTouch.phase == UITouchPhaseCancelled) {
+    if(myTouch.phase == UITouchPhaseCancelled) {
 			touch_type=5;
 		}
 		
@@ -234,7 +234,7 @@ extern Game* game;
 		
 		}
 
-    }
+  }
 
 }
 
@@ -243,25 +243,25 @@ extern Game* game;
 
 	Touch::ClearTouches();
 
-    NSSet *touches = [event allTouches];
-    for (UITouch *myTouch in touches)
-    {
+  NSSet *touches = [event allTouches];
+  for (UITouch *myTouch in touches)
+  {
 	
 		int touch_type=0;
 	
-        if(myTouch.phase == UITouchPhaseBegan){
+    if(myTouch.phase == UITouchPhaseBegan){
 			touch_type=1;
-        }
-        if(myTouch.phase == UITouchPhaseMoved){
+    }
+    if(myTouch.phase == UITouchPhaseMoved){
 			touch_type=2;
-        }
-        if(myTouch.phase == UITouchPhaseStationary){
+    }
+    if(myTouch.phase == UITouchPhaseStationary){
 			touch_type=3;
-        }
-        if(myTouch.phase == UITouchPhaseEnded) {
+    }
+    if(myTouch.phase == UITouchPhaseEnded) {
 			touch_type=4;
 		}
-        if(myTouch.phase == UITouchPhaseCancelled) {
+    if(myTouch.phase == UITouchPhaseCancelled) {
 			touch_type=5;
 		}
 		
@@ -279,7 +279,7 @@ extern Game* game;
 		
 		}
 
-    }
+  }
 
 }
 

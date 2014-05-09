@@ -58,6 +58,8 @@ Surface::Surface(){
 
 Surface::~Surface(){
 
+  FreeVBO();
+  
 	delete brush;
 
 }

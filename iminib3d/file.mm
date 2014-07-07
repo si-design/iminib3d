@@ -18,77 +18,54 @@
 using namespace std;
 
 string File::DocsDir(){
-
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    CFStringRef documentsDirectory = (CFStringRef)[paths objectAtIndex:0];
-    if (!documentsDirectory) {
-        NSLog(@"Documents directory not found!");
-        return NO;
-    }
-
-	const char* c_docs_dir=CFStringGetCStringPtr(documentsDirectory,kCFStringEncodingMacRoman);
-
-	int success=0;
-	char localBuffer[300];
-
-	if(c_docs_dir==NULL){
-		success=CFStringGetCString(documentsDirectory,localBuffer,300,kCFStringEncodingMacRoman);
-	}
-	
-	string docs_dir="";
-
-	if(success){
-		docs_dir=localBuffer;
-	}else{
-		docs_dir="";
-	}
-
-	return docs_dir;
-
+  
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString* documentsDirectory = [paths objectAtIndex:0];
+  if (!documentsDirectory) {
+    NSLog(@"Documents directory not found!");
+    return "";
+  }
+  
+	return [documentsDirectory UTF8String];
+  
 }
 
 string File::ResourceFilePath(string filename){
-
+  
 	if(filename==""){
 		return "";
-	}	
-
-	const char* c_filename=filename.c_str();
-
-	NSString* ns_string = [NSString stringWithUTF8String: c_filename];
-
+	}
+  
+	NSString* ns_string = [NSString stringWithUTF8String: filename.c_str()];
+  
 	NSArray* ns_string_parts = [ns_string componentsSeparatedByString:@"."];
-
+  
 	if([ns_string_parts count]!=2) return "";
-
+  
 	NSString* ns_string_part1=[ns_string_parts objectAtIndex: 0];
 	NSString* ns_string_part2=[ns_string_parts objectAtIndex: 1];
-
+  
 	if([ns_string_part1 length]==0 || [ns_string_part2 length]==0){
 		return "";
 	}
-
+  
 	NSString* ns_filename = [[NSBundle mainBundle] pathForResource:ns_string_part1 ofType:ns_string_part2];
-
-    if( !ns_filename ) return "";
-    
-	const char* c_filename2 = [ns_filename UTF8String];
-	
-	return c_filename2;
-
+  
+  if( !ns_filename ) return "";
+  
+	return [ns_filename UTF8String];
+  
 }
 
 File* File::ReadResourceFile(string filename){
-
+  
 	string filename2=ResourceFilePath(filename);
 	
 	if(filename2==""){
 		cout << "Error: No Filename: " << filename << endl;
 	}
-
-	const char* c_filename=filename2.c_str();
-
-	FILE* pFile=fopen(c_filename,"rb");
+  
+	FILE* pFile=fopen(filename2.c_str(),"rb");
 	
 	if(pFile==NULL){
 		cout << "Error: Cannot Find Resource File: " << filename << endl;
@@ -99,19 +76,19 @@ File* File::ReadResourceFile(string filename){
 	file->pFile=pFile;
 	
 	return file;
-
+  
 }
 
 File* File::ReadFile(string filename){
-
+  
 	if(filename==""){
 		RuntimeError("Error: No Filename");
 	}
 	
 	string filename2=DocsDir()+"/"+filename;
-
+  
 	FILE* pFile=fopen(filename2.c_str(),"rb");
-
+  
 	if(pFile==NULL){
 		//cout << "Error: Can't Find Document File '"+filename+"'" << endl;
 		return NULL;
@@ -119,19 +96,19 @@ File* File::ReadFile(string filename){
 	
 	File* file=new File();
 	file->pFile=pFile;
-
+  
 	return file;
-
+  
 }
 
 File* File::WriteFile(string filename){
-
+  
 	if(filename==""){
 		RuntimeError("Error: No Filename");
 	}
 	
 	string filename2=DocsDir()+"/"+filename;
-
+  
 	FILE* pFile=fopen(filename2.c_str(), "wb" );
 	
 	if(pFile==NULL){
@@ -143,83 +120,83 @@ File* File::WriteFile(string filename){
 	file->pFile=pFile;
 	
 	return file;
-
+  
 }
 
 void File::CloseFile(){
-
+  
 	fclose(pFile);
-
+  
 	delete this;
-
+  
 }
 
 char File::ReadByte(){
-
+  
 	char c;
 	fread(&c,1,1,pFile);
-
+  
 	return c;
 	
 }
 
 short File::ReadShort(){
-
+  
 	short s;
 	fread(&s,1,2,pFile);
-
+  
 	return s;
 	
 }
 
 int File::ReadInt(){
-
+  
 	int i;
 	fread(&i,1,4,pFile);
-
+  
 	return i;
 	
 }
 
 long File::ReadLong(){
-
+  
 	long l;
 	fread(&l,1,8,pFile);
-
+  
 	return l;
 	
 }
 
 float File::ReadFloat(){
-
+  
 	float f;
 	fread(&f,1,4,pFile);
-
+  
 	return f;
 	
 }
 
 string File::ReadString(){
-
+  
 	int length=ReadInt();
 	
 	char* c=new char[length+1];
 	fgets(c,length+1,pFile);
-
+  
 	string s=c;
-
+  
 	return s;
 	
 }
 
 string File::ReadLine(){
-
+  
 	string s;
 	char c=ReadByte();
 	
 	// get string up to first new line character of end of file
 	while(c!=13 && c!=10 && Eof()!=true){
-
+    
 		if(c!=0){
 			s=s+c;
 		}
@@ -235,65 +212,65 @@ string File::ReadLine(){
 		c=ReadByte();
 		if(c!=13 && c!=10) SeekFile(pos);
 	}
-
+  
 	return s;
 	
 }
 
 void File::WriteByte(char c){
-
+  
 	fwrite(&c,1,1,pFile);
-
+  
 	return;
 	
 }
 
 void File::WriteShort(short s){
-
+  
 	fwrite(&s,1,2,pFile);
-
+  
 	return;
 	
 }
 
 void File::WriteInt(int i){
-
+  
 	fwrite(&i,1,4,pFile);
-
+  
 	return;
 	
 }
 
 void File::WriteLong(long l){
-
+  
 	fwrite(&l,1,8,pFile);
-
+  
 	return;
 	
 }
 
 void File::WriteFloat(float f){
-
+  
 	fwrite(&f,1,4,pFile);
-
+  
 	return;
 	
 }
 
 void File::WriteString(string s){
-
+  
 	const char* cs=s.c_str();
 	
 	fputs(cs,pFile);
-
+  
 	return;
 	
 }
 
 void File::WriteLine(string s){
-
+  
 	for(int i=0;i<s.length();i++){
-
+    
 		string sc=&s[i];
 		const char* c=sc.c_str();
 		
@@ -312,23 +289,23 @@ void File::WriteLine(string s){
 }
 
 void File::SeekFile(int pos){
-
-	 fseek(pFile,pos,SEEK_SET);
-
+  
+  fseek(pFile,pos,SEEK_SET);
+  
 }
 
-int File::FilePos(){
-
+double File::FilePos(){
+  
 	return ftell(pFile);
-
+  
 }
 
 int File::Eof(){
-
+  
 	int endof=0;
 	
-	int pos=ftell(pFile);
-
+	double pos=ftell(pFile);
+  
 	char c;
 	fread(&c,1,1,pFile);
 	
@@ -337,5 +314,5 @@ int File::Eof(){
 	fseek(pFile,pos,SEEK_SET);
 	
 	return endof;
-
+  
 }

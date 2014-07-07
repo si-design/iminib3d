@@ -53,7 +53,7 @@ public:
 	void WriteLine(string s);
 	
 	void SeekFile(int pos);
-	int FilePos();
+	double FilePos();
 	
 	int Eof();
 
